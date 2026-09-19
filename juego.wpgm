@@ -1,0 +1,18 @@
+import wollok.game.*
+import logica.*
+
+
+program juego {
+
+    game.title("Título ahre")
+
+    game.width(37)
+
+    game.height(18)
+
+  //  game.boardGround("fondo.jpg")
+
+
+
+    game.start()
+}
