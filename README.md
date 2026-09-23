@@ -19,7 +19,7 @@
  - Escudo
   
 ## Sistema del juego
- - Menu principal
+ - Menu principal - Mati
  - Mensaje de perdiste
  - Puntaje (tiempo) modo speedrun any% (?)
  - Scoreboard
