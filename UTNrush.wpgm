@@ -10,9 +10,9 @@ program jueguito { // le puse ese nombre por ponerle nomás xD
     game.ground("calle.png")
 
    // límites del juego
-	game.width(18)
-	game.height(12)
-	game.cellSize(38)	
+	game.width(20)
+	game.height(14)
+	game.cellSize(50) // elementos (enemigos, powerups, etc.) de 50x50
 
 	juego.iniciar()
 	game.start()
