@@ -2,20 +2,21 @@
 ## Grafico (Sprites)
  - Enemigos
  - Estudiante
+ - Powerups
  - Facultad
  - Calle
  - Pasto
- - Inicio (Casa)
+ - Inicio (casa)
   
 ## Enemigos 
- - Colectivos
- - Autos
+ - Autos - Vic
+ - Colectivos 
  - Tren
  - Piqueteros
 
 ## Powerups
- - Mate - vida extra
- - Monster - velocidad
+ - Mate (vida extra) - Vic
+ - Monster (velocidad)
  - Escudo
   
 ## Sistema del juego
@@ -25,5 +26,5 @@
  - Scoreboard
 
 ## Niveles
- - Cantidad y variedad de enemigos - 5 niveles y el ultimo llegas a la facu
+ - Cantidad y variedad de enemigos (5 niveles y el ultimo llegas a la facu)
  - Items que hay que agarrar si o si para avanzar
