@@ -1,0 +1,20 @@
+import wollok.game.*
+import wollok.lib.*
+import juego.*
+
+
+program jueguito { // le puse ese nombre por ponerle nomás xD
+   
+    game.title("UTN Rush")
+    
+    game.ground("calle.png")
+
+   // límites del juego
+	game.width(18)
+	game.height(12)
+	game.cellSize(38)	
+
+	juego.iniciar()
+	game.start()
+
+}
