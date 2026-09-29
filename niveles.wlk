@@ -26,9 +26,21 @@ class Nivel {
 
 }
 
- object  nivel1 inherits Nivel(){ // inherits para heredar varriables y métodos de Nivel()
+ object  nivel1{ // inherits para heredar varriables y métodos de Nivel()
 
-   override method empezar(){} // override para agarrar método heredado pero cambiar su comportamiento
+	method empezar(){
+		console.println("calle.opng")
+		game.ground("calle.png")
+	} // override para agarrar método heredado pero cambiar su comportamiento
+}
+
+object niveles{
+
+	var property nivelesCreados = [nivel1]
+
+	method empezar(nivel){
+		nivelesCreados.get(nivel - 1).empezar()
+	}
 }
 
 /*

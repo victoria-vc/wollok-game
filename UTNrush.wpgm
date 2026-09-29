@@ -7,7 +7,7 @@ program jueguito { // le puse ese nombre por ponerle nomás xD
    
     game.title("UTN Rush")
     
-    game.ground("calle.png")
+    //game.ground("calle.png")
 
    // límites del juego
 	game.width(20)
