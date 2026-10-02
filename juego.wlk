@@ -1,4 +1,6 @@
 import niveles.*
+import fondos.*
+import visuales.*
 
 object juego {
 
@@ -10,8 +12,9 @@ object juego {
     }
 
     method mostrarMenu() {
-        game.boardGround("menu.png")
+        game.addVisual(fondoMenu)
 
+  
         game.addVisual(botonEmpezar)
         game.addVisual(botonSalir)
         game.addVisual(flechaMenu)
@@ -49,40 +52,9 @@ object juego {
 
     method iniciarNivel() {
         game.clear()
-        game.boardGround("calle.png")
         niveles.empezar(nivelActual)
         nivelActual += 1
     }
 }
 
 
-object botonEmpezar {
-
-    var property position = game.at(4, 5)
-
-    method image() = "empezar.png"
-}
-
-
-object botonSalir {
-
-    var property position = game.at(4, 3)
-
-    method image() = "salir.png"
-}
-
-
-object flechaMenu {
-
-    var property position = game.at(2, 5)
-
-    method image() = "flecha.png"
-
-    method moverArriba(){
-        position = game.at(2, 5)
-    }
-
-    method moverAbajo(){
-        position = game.at(2, 3)
-    }
-}

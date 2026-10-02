@@ -1,6 +1,8 @@
 //import juego.*
 import jugador.*
 import enemigos.*
+import movimientos.*
+import fondos.*
 
 class Nivel {
 /* 
@@ -29,8 +31,12 @@ class Nivel {
  object  nivel1{ // inherits para heredar varriables y métodos de Nivel()
 
 	method empezar(){
-		console.println("calle.opng")
-		game.ground("calle.png")
+		console.println("Nivel 1 empezando")
+		game.addVisual(fondoCalle)
+
+		game.addVisual(jugador)
+
+		movimientos.configControles(jugador)
 	} // override para agarrar método heredado pero cambiar su comportamiento
 }
 
