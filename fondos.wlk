@@ -10,6 +10,6 @@ object fondoMenu inherits Fondo {
     override method image() = "menu.png"
 }
 
-object fondoCalle inherits Fondo {
-    override method image() = "calle.png"
+object fondoPasto inherits Fondo {
+    override method image() = "pasto.png"
 }

@@ -32,7 +32,7 @@ class Nivel {
 
 	method empezar(){
 		console.println("Nivel 1 empezando")
-		game.addVisual(fondoCalle)
+		game.addVisual(fondoPasto)
 
 		game.addVisual(jugador)
 

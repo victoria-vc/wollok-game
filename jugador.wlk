@@ -2,7 +2,7 @@ import niveles.*
 
 
 object jugador {
-    var property position = game.center()
+    var property position = game.at(10, 0)
     var direccion = "derecha"
 
     method image() {
