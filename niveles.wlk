@@ -3,6 +3,7 @@ import jugador.*
 import enemigos.*
 import movimientos.*
 import fondos.*
+import visuales.*
 
 class Nivel {
 /* 
@@ -28,18 +29,22 @@ class Nivel {
 
 }
 
- object  nivel1{ // inherits para heredar varriables y métodos de Nivel()
+object nivel1 {
 
-	method empezar(){
-		console.println("Nivel 1 empezando")
-		game.addVisual(fondoPasto)
+    method empezar() {
+        game.ground("pasto.png")
+        const filasDeCalle = [2, 4, 6, 8, 10, 12] // filas donde hay calle
 
-		game.addVisual(jugador)
+        filasDeCalle.forEach({ filaY => 
+            (0 .. game.width() - 1).forEach({ columnaX =>
+                game.addVisual(new BloqueCalle(position = game.at(columnaX, filaY)))
+            })
+        })
 
-		movimientos.configControles(jugador)
-	} // override para agarrar método heredado pero cambiar su comportamiento
+        game.addVisual(jugador)
+        movimientos.configControles(jugador)
+    } 
 }
-
 object niveles{
 
 	var property nivelesCreados = [nivel1]

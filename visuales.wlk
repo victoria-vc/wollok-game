@@ -33,3 +33,7 @@ object flechaMenu {
     }
 }
 
+class BloqueCalle {
+    var property position
+    method image() = "calle.png"
+}
