@@ -1,12 +1,10 @@
 import niveles.*
 
 
-class Enemigo{
+class Enemigo {
     var property position
     var direccion = 1
     var property velocidad
-
-    method image() = "bolita.png"
 
     method esEnemigo() = true
 
@@ -21,6 +19,21 @@ class Enemigo{
     }
 }
 
+class Auto inherits Enemigo {
+    method image() = "auto.png"
+}
+
+/* class Bondi inherits Enemigo {
+    method image() = "bondi.png"
+}
+
+class Tren inherits Enemigo {
+    method image() = "tren.png"
+}
+
+class Piquete inherits Enemigo {
+    method image() = "piquete.png"
+} */
 
 object barrera {
     var abierta = true

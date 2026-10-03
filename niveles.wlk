@@ -41,6 +41,18 @@ object nivel1 {
             })
         })
 
+		const auto1 = new Auto(position = game.at(19, 2), velocidad = 1, direccion = -1)
+		const auto2 = new Auto(position = game.at(0,4), velocidad = 1, direccion = 1)
+
+		game.addVisual(auto1)
+		game.addVisual(auto2)
+
+		game.onTick(200, "movimiento_autos", {
+			auto1.mover()
+			auto2.mover()
+		})
+
+
         game.addVisual(jugador)
         movimientos.configControles(jugador)
     } 
