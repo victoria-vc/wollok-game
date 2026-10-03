@@ -75,8 +75,13 @@ object nivel1 {
 
         game.addVisual(jugador)
         movimientos.configControles(jugador)
-    } 
-}
+
+		game.onCollideDo(jugador, { elemento => 
+			if(elemento.esEnemigo()){
+				jugador.position(game.at(10,0))
+			}
+		})
+}}
 object niveles{
 
 	var property nivelesCreados = [nivel1]
