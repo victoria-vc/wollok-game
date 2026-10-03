@@ -37,3 +37,8 @@ class BloqueCalle {
     var property position
     method image() = "calle.png"
 }
+
+class BloquePasto {
+    var property position
+    method image() = "pasto.png"
+}

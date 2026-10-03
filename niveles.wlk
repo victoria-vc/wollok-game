@@ -32,7 +32,14 @@ class Nivel {
 object nivel1 {
 
     method empezar() {
-        game.ground("pasto.png")
+
+       const filasDePasto = [0, 1, 3, 5, 7, 9, 11, 13, 14]
+        
+        filasDePasto.forEach({ filaY => 
+            (0 .. game.width() - 1).forEach({ columnaX => 
+                game.addVisual(new BloquePasto(position = game.at(columnaX, filaY)))
+            })
+        })
         const filasDeCalle = [2, 4, 6, 8, 10, 12] // filas donde hay calle
 
         filasDeCalle.forEach({ filaY => 
@@ -41,17 +48,28 @@ object nivel1 {
             })
         })
 
-		const auto1 = new Auto(position = game.at(19, 2), velocidad = 1, direccion = -1)
-		const auto2 = new Auto(position = game.at(0,4), velocidad = 1, direccion = 1)
+		const auto1 = new AutoRojo(position = game.at(19, 2), velocidad = 1, direccion = -1)
+		const auto2 = new AutoAzul(position = game.at(0,4), velocidad = 1, direccion = 1)
+		const auto3 = new AutoGris(position = game.at(19,6), velocidad = 1, direccion = -1)
+		const auto4 = new AutoRojo(position = game.at(19, 8), velocidad = 1, direccion = -1)
+		const auto5 = new AutoAzul(position = game.at(0, 10), velocidad = 1, direccion = 1)
+		const auto6 = new AutoGris(position = game.at(19, 12), velocidad = 1, direccion = -1)
 
 		game.addVisual(auto1)
 		game.addVisual(auto2)
+		game.addVisual(auto3)
+		game.addVisual(auto4)
+		game.addVisual(auto5)
+		game.addVisual(auto6)
 
 		game.onTick(200, "movimiento_autos", {
 			auto1.mover()
 			auto2.mover()
+			auto3.mover()
+			auto4.mover()
+			auto5.mover()
+			auto6.mover()
 		})
-
 
         game.addVisual(jugador)
         movimientos.configControles(jugador)

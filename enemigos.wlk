@@ -19,8 +19,16 @@ class Enemigo {
     }
 }
 
-class Auto inherits Enemigo {
-    method image() = "auto.png"
+class AutoRojo inherits Enemigo {
+    method image() = "autorojo.png"
+}
+
+class AutoAzul inherits Enemigo {
+    method image() = "autoazul.png"
+}
+
+class AutoGris inherits Enemigo {
+    method image() = "autogris.png"
 }
 
 /* class Bondi inherits Enemigo {
