@@ -42,3 +42,8 @@ class BloquePasto {
     var property position
     method image() = "pasto.png"
 }
+
+class NivelUnoCartel {
+    var property position
+    method image() = "nivel1.png"
+}

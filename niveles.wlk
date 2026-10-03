@@ -48,6 +48,8 @@ object nivel1 {
             })
         })
 
+		game.addVisual(new NivelUnoCartel(position = game.at(0, 0)))
+
 		const auto1 = new AutoRojo(position = game.at(19, 2), velocidad = 1, direccion = -1)
 		const auto2 = new AutoAzul(position = game.at(0,4), velocidad = 1, direccion = 1)
 		const auto3 = new AutoGris(position = game.at(19,6), velocidad = 1, direccion = -1)
