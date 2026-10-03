@@ -4,6 +4,7 @@ import enemigos.*
 import movimientos.*
 import fondos.*
 import visuales.*
+import powerups.*
 
 class Nivel {
 /* 
@@ -72,6 +73,12 @@ object nivel1 {
 			auto5.mover()
 			auto6.mover()
 		})
+
+		const mate1 = new Mate(position = game.at(0, 3))
+		const mate2 = new Mate(position = game.at(9, 6))
+
+		game.addVisual(mate1)
+		game.addVisual(mate2)
 
         game.addVisual(jugador)
         movimientos.configControles(jugador)

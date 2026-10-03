@@ -7,6 +7,7 @@ class Enemigo {
     var property velocidad
 
     method esEnemigo() = true
+    method esPowerUp() = false
 
     method mover(){
         if (position.x() > game.width()){

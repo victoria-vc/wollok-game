@@ -37,40 +37,47 @@ class BloqueCalle {
     var property position
     method image() = "calle.png"
     method esEnemigo() = false
+    method esPowerUp() = false
 }
 
 class BloquePasto {
     var property position
     method image() = "pasto.png"
     method esEnemigo() = false
+    method esPowerUp() = false
 }
 
 class NivelUnoCartel {
     var property position
     method image() = "nivel1.png"
     method esEnemigo() = false
+    method esPowerUp() = false
 }
 
 class NivelDosCartel {
     var property position
     method image() = "nivel2.png"
     method esEnemigo() = false
+    method esPowerUp() = false
 }
 
 class NivelTresCartel {
     var property position
     method image() = "nivel3.png"
     method esEnemigo() = false
+    method esPowerUp() = false
 }
 
 class NivelCuatroCartel {
     var property position
     method image() = "nivel4.png"
     method esEnemigo() = false
+    method esPowerUp() = false
 }
 
 class NivelCincoCartel {
     var property position
     method image() = "nivel5.png" // ó "nivelfinal.png"
     method esEnemigo() = false
+    method esPowerUp() = false
 }
