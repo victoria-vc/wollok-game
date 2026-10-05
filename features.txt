@@ -1,26 +1,37 @@
 # TODO
-## Grafico (Sprites)
+## Gráfico (Sprites)
  - Enemigos
+    - Autos [ok] - Vic
+    - Bondis
+    - Trenes
+    - Piquete
  - Estudiante
  - Powerups
+    - Mate [ok] - Vic
+    - Monster
+    - Escudo
  - Facultad
- - Calle
- - Pasto
+ - Calle [ok]
+ - Pasto [ok]
+ - Árboles, agua, etc. (?)
  - Inicio (casa)
+ - Puntos acumulados 
+ - Vida
+ - Número de nivel (nivel 1, nivel 2, etc.) [ok]
   
 ## Enemigos 
- - Autos - Vic
+ - Autos [falta comportamiento] - Vic
  - Colectivos 
  - Tren
  - Piqueteros
 
 ## Powerups
- - Mate (vida extra) - Vic
+ - Mate (vida extra) [falta comportamiento] - Vic
  - Monster (velocidad)
- - Escudo
+ - Escudo (inmune a enemigos)
   
 ## Sistema del juego
- - Menu principal - Mati
+ - Menú principal [ok]- Mati ^
  - Mensaje de perdiste
  - Puntaje (tiempo) modo speedrun any% (?)
  - Scoreboard
