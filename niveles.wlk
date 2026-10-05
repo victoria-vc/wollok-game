@@ -75,7 +75,7 @@ object nivel1 {
 		})
 
 		const mate1 = new Mate(position = game.at(0, 3))
-		const mate2 = new Mate(position = game.at(9, 6))
+		const mate2 = new Mate(position = game.at(12, 7))
 
 		game.addVisual(mate1)
 		game.addVisual(mate2)
