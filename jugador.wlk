@@ -4,6 +4,7 @@ import niveles.*
 object jugador {
     var property position = game.at(10, 0)
     var direccion = "derecha"
+    var property vidas = 3 
 
     method image() {
         var asset
@@ -33,4 +34,10 @@ object jugador {
 
         position = nuevaPosition
     }
+
+    method perderVida() {
+    vidas = vidas - 1
+    position = game.at(10, 0)
+    }
+
 }

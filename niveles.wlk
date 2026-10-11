@@ -84,9 +84,9 @@ object nivel1 {
         movimientos.configControles(jugador)
 
 		game.onCollideDo(jugador, { elemento => 
-			if(elemento.esEnemigo()){
-				jugador.position(game.at(10,0))
-			}
+    		if(elemento.esEnemigo()){
+        	jugador.perderVida()
+    }
 		})
 }}
 object niveles{
