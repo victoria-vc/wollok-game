@@ -33,6 +33,13 @@ object flechaMenu {
     }
 }
 
+   object marcadorVidas {
+       var property position = game.at(1, 13)
+
+       method text() = "Vidas: " + jugador.vidas()
+       method textColor() = "FFFFFF"
+   }
+
 class BloqueCalle {
     var property position
     method image() = "calle.png"

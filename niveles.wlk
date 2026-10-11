@@ -82,6 +82,7 @@ object nivel1 {
 
         game.addVisual(jugador)
         movimientos.configControles(jugador)
+		game.addVisual(marcadorVidas)
 
 		game.onCollideDo(jugador, { elemento => 
     		if(elemento.esEnemigo()){
