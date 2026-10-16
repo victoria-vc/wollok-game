@@ -3,33 +3,23 @@ import niveles.*
 
 class Enemigo {
     var property position
-    var direccion = 1
+    var property direccion
     var property velocidad
 
     method esEnemigo() = true
     method esPowerUp() = false
 
     method mover(){
-        if (position.x() > game.width()){
-            direccion = -1 * velocidad
-        }
-        if (position.x() < 0){
-            direccion = 1 * velocidad
-        }
-        position = position.right(direccion)
+        position = position.right(direccion * velocidad)
     }
+
+    method estaAfuera() = self.position().x() < -5 or self.position().x() > game.width() + 5 //agrego 5 a los dos lados para que no se borren antes de aparecer
 }
 
-class AutoRojo inherits Enemigo {
-    method image() = "autorojo.png"
-}
-
-class AutoAzul inherits Enemigo {
-    method image() = "autoazul.png"
-}
-
-class AutoGris inherits Enemigo {
-    method image() = "autogris.png"
+class Auto inherits Enemigo{
+    var property color
+    method image() = "auto_" + color.toString() + ".png" 
+    
 }
 
 /* class Bondi inherits Enemigo {
