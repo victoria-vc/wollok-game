@@ -1,0 +1,18 @@
+import wollok.game.*
+import wollok.lib.*
+import juego.*
+
+
+program jueguito { // le puse ese nombre por ponerle nomás xD
+   
+    game.title("UTN Cross")
+    
+   // límites del juego
+	game.width(20)
+	game.height(14)
+	game.cellSize(50) // elementos (enemigos, powerups, etc.) de 50x50
+
+	juego.iniciar()
+	game.start()
+
+}
