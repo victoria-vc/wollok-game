@@ -5,7 +5,6 @@ import visuales.*
 object juego {
 
     var opcionSeleccionada = 1
-    var nivelActual = 1
 
     method iniciar() {
         self.mostrarMenu()
@@ -52,8 +51,7 @@ object juego {
 
     method iniciarNivel() {
         game.clear()
-        niveles.empezar(nivelActual)
-        nivelActual += 1
+        niveles.empezar()
     }
 }
 

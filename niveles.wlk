@@ -44,73 +44,73 @@ object generadorDeNivel {
 }
 class Nivel {
 	const filasPasto = []
-	const callesConAutos = new Dictionary()
-	const property ticksGeneracion
+	const filasCalle = []
 	const enemigos = []
+
+	const property ticksGeneracion
+	const property probabilidadEnemigos
 /* 
 	method Visuales() {
 	} */
 	
-	method empezar() {
+	method generarEnemigo(lado, calle, direccion)
 
-		
+	method empezar() {
 
 		const filas = generadorDeNivel.generarFilas();
 
 		(0 .. filas.size() - 1).forEach({ y =>
             const esCalle = filas.get(y)
-
+			if (esCalle) { filasCalle.add(y) } else { filasPasto.add(y) }
             (0 .. game.width() - 1).forEach({ x =>
                 if (esCalle) {
                     game.addVisual(new BloqueCalle(position = game.at(x, y)))
-					//filasCalle.add(y)
-					callesConAutos.put(y, 0)
                 } else {
                     game.addVisual(new BloquePasto(position = game.at(x, y)))
-					filasPasto.add(y)
                 }
             })
 		})
 
 		game.onTick(ticksGeneracion, "generar_enemigos", {
 			
-			callesConAutos.forEach({calle, cantidadAutos => 
+			filasCalle.forEach({calle => 
 				//console.println("calle " + calle.toString() + " autos" + cantidadAutos.toString())
-				if (cantidadAutos == 0 and 0.randomUpTo(1) > 0.5) {
+				if (0.randomUpTo(1) < probabilidadEnemigos) {
 					const ladoRandom = 0.randomUpTo(1)
 					var lado
 					var direccion
-					if (ladoRandom > 0.1 ){
+					if (ladoRandom > 0.5 ){
 						lado = 0
 						direccion = 1
 					}else{
 						lado = game.width()
 						direccion = -1
 					}
-					const nuevoAuto = new Auto(position = game.at(lado, calle), velocidad = 0.1.randomUpTo(1), direccion = direccion, color=["rojo", "azul", "gris"].anyOne())
-					enemigos.add(nuevoAuto)
+					const nuevoEnemigo = self.generarEnemigo(lado, calle, direccion)
+					enemigos.add(nuevoEnemigo)
 					//callesConAutos.put(calle, 1)
-					game.addVisual(nuevoAuto)
+					nuevoEnemigo.agregarAlJuego()
 				}
 			})
 
 		})
 
-		game.onTick(100, "sacar_autos", {
-			const autosAfuera = enemigos.filter({auto => auto.estaAfuera()})
-			autosAfuera.forEach({auto => game.removeVisual(auto)})
+		game.onTick(100, "sacar_enemigos", { //saco de la visual y la lista los enemigos que estan fuera de la grilla
+			const autosAfuera = enemigos.filter({enemigo => enemigo.estaAfuera()})
+			autosAfuera.forEach({enemigo => enemigo.sacarDelJuego()})
 			enemigos.removeAll(autosAfuera)
 		})
 
-		game.onTick(50, "movimiento_autos", {
-			enemigos.forEach({auto => auto.mover()})
+		game.onTick(50, "movimiento_enemigos", {
+			enemigos.forEach({enemigo => enemigo.mover()})
+		})
+
+		game.onTick(1000, "check_gano", {
+			self.pasarDeNivel()
 		})
 
 
-		game.addVisual(jugador)
-        movimientos.configControles(jugador)
-		game.addVisual(marcadorVidas)
-		game.addVisual(new NivelUnoCartel(position = game.at(0, 0)))
+		
 
 		const mate1 = new Mate(position = game.at(0, 3))
 		const mate2 = new Mate(position = game.at(12, 7))
@@ -136,22 +136,62 @@ class Nivel {
 	method reiniciarJuego() {   
 	}
 	
-
+ */
 	method pasarDeNivel() {
-	} */
+		//jugador.puedePasarDeNivel()
+		if(jugador.estaEnFacultad()){
+			jugador.reiniciarPosicion()
+			niveles.pasarNivel()
+		}
+	}
 
 }
 
+class Nivel1 inherits Nivel{
+
+	override method generarEnemigo(lado, calle, direccion){
+		return new Auto(position = game.at(lado, calle), velocidad = 0.1.randomUpTo(1), direccion = direccion, color=["rojo", "azul", "gris"].anyOne())
+	}
+}
+
+class Nivel2 inherits Nivel{
+		override method generarEnemigo(lado, calle, direccion){
+			return new Colectivo(position = game.at(lado, calle), velocidad = 0.2.randomUpTo(1.5), direccion = direccion)
+		}
+}
 
 object niveles{
 
+	var property nivelActual = 0
 
-	const nivel1 = new Nivel(ticksGeneracion = 1000)
-	var property nivelesCreados = [nivel1]
+	const nivel1 = new Nivel1(ticksGeneracion = 1000, probabilidadEnemigos = 0.2)
+	const nivel2 = new Nivel2(ticksGeneracion = 800, probabilidadEnemigos = 0.4)
 
-	method empezar(nivel){
-		nivelesCreados.get(nivel - 1).empezar()
+	var property nivelesCreados = [nivel1, nivel2]
+
+	method cargarVisuales(){
+		game.addVisual(jugador)
+        movimientos.configControles(jugador)
+		game.addVisual(marcadorVidas)
+		game.addVisual(new NivelCartel(position = game.at(0, 0), nivel = nivelActual + 1))
 	}
+
+	method empezar(){
+		nivelesCreados.get(0).empezar()
+		self.cargarVisuales()
+	}
+
+	method pasarNivel(){
+		nivelActual += 1
+		game.clear()
+		if(nivelActual < nivelesCreados.size()){
+			nivelesCreados.get(nivelActual).empezar()
+		}else{
+			console.println("Ganaste")
+		}
+		self.cargarVisuales()
+	}
+
 }
 
 /*

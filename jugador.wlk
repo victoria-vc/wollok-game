@@ -21,7 +21,6 @@ object jugador {
 
     method position(nuevaPosition) {
         const temp = position
-        console.println(self.estaEnGrilla(nuevaPosition).toString())
         if ( self.estaEnGrilla(nuevaPosition)){
             if (nuevaPosition.x() > position.x())
                 direccion = "derecha"
@@ -41,12 +40,18 @@ object jugador {
         }
     }
 
+    method reiniciarPosicion(){
+        position = game.at(10, 0)
+    }
+
+    method estaEnFacultad() = self.position().y() == game.height() - 1
+
     method perderVida() {
         vidas = vidas - 1
         //sonido de perder vida
-        position = game.at(10, 0)
-        if(self.perdio()){
-            "true"
+        self.reiniciarPosicion()
+        if(self.perdio()){ //TEMP
+            "true" 
         }else{
             "false"
         }

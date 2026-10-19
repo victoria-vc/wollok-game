@@ -6,6 +6,8 @@ class Enemigo {
     var property direccion
     var property velocidad
 
+    method image()
+
     method esEnemigo() = true
     method esPowerUp() = false
 
@@ -13,26 +15,60 @@ class Enemigo {
         position = position.right(direccion * velocidad)
     }
 
+    method agregarAlJuego(){
+        game.addVisual(self)
+    }
+
+    method sacarDelJuego(){
+        game.removeVisual(self)
+    }
+
     method estaAfuera() = self.position().x() < -5 or self.position().x() > game.width() + 5 //agrego 5 a los dos lados para que no se borren antes de aparecer
 }
 
 class Auto inherits Enemigo{
     var property color
-    method image() = "auto_" + color.toString() + ".png" 
+    override method image() = "auto_" + color.toString() + ".png" 
     
 }
 
-/* class Bondi inherits Enemigo {
-    method image() = "bondi.png"
+class ColaColectivo inherits Enemigo {
+    const property colectivo
+
+    override method image() = "transparente.png"
+    override method mover() {}   // la mueve el colectivo, no se mueve sola
+}
+
+class Colectivo inherits Enemigo {
+    const cola = new ColaColectivo(colectivo = self, position = self.posicionCola(), direccion = direccion, velocidad = velocidad)
+
+    override method image() = "colectivo_" + (if (direccion == 1) "derecha" else "izquierda") + ".png"
+
+    method posicionCola() = if (direccion == 1) position.right(1) else position.left(1)
+
+    override method mover() {
+        super()
+        cola.position(self.posicionCola())
+    }
+
+    override method agregarAlJuego() {
+        game.addVisual(self)
+        game.addVisual(cola)
+    }
+
+    override method sacarDelJuego() {
+        game.removeVisual(self)
+        game.removeVisual(cola)
+    }
 }
 
 class Tren inherits Enemigo {
-    method image() = "tren.png"
+    override method image() = "tren.png"
 }
 
 class Piquete inherits Enemigo {
-    method image() = "piquete.png"
-} */
+    override method image() = "piquete.png"
+}
 
 object barrera {
     var abierta = true

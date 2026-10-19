@@ -54,37 +54,10 @@ class BloquePasto {
     method esPowerUp() = false
 }
 
-class NivelUnoCartel {
+class NivelCartel {
     var property position
-    method image() = "nivel1.png"
-    method esEnemigo() = false
-    method esPowerUp() = false
-}
-
-class NivelDosCartel {
-    var property position
-    method image() = "nivel2.png"
-    method esEnemigo() = false
-    method esPowerUp() = false
-}
-
-class NivelTresCartel {
-    var property position
-    method image() = "nivel3.png"
-    method esEnemigo() = false
-    method esPowerUp() = false
-}
-
-class NivelCuatroCartel {
-    var property position
-    method image() = "nivel4.png"
-    method esEnemigo() = false
-    method esPowerUp() = false
-}
-
-class NivelCincoCartel {
-    var property position
-    method image() = "nivel5.png" // ó "nivelfinal.png"
+    var property nivel
+    method image() = "nivel" + nivel.toString() + ".png"
     method esEnemigo() = false
     method esPowerUp() = false
 }
