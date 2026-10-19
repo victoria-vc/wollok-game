@@ -117,10 +117,9 @@ class Nivel {
 
 		game.addVisual(mate1)
 		game.addVisual(mate2)
+
 		game.onCollideDo(jugador, { elemento => 
-    		if(elemento.className().contains("enemigo")){
-        		jugador.perderVida()
-			}
+    		elemento.afectarJugador(jugador)
 		})	
 	
 	}

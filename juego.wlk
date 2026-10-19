@@ -53,6 +53,8 @@ object juego {
         game.clear()
         niveles.empezar()
     }
+
+    
 }
 
 

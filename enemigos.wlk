@@ -8,8 +8,7 @@ class Enemigo {
 
     method image()
 
-    method esEnemigo() = true
-    method esPowerUp() = false
+    method afectarJugador(unJugador) = unJugador.perderVida()
 
     method mover(){
         position = position.right(direccion * velocidad)
