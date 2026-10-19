@@ -1,4 +1,5 @@
 import niveles.*
+import sonidos.*
 
 
 object jugador {
@@ -35,6 +36,8 @@ object jugador {
                 direccion = "abajo"
 
             position = nuevaPosition
+
+            sonidos.moverPersonaje()
         }else{
             position = temp
         }
@@ -48,10 +51,10 @@ object jugador {
 
     method perderVida() {
         vidas = vidas - 1
-        //sonido de perder vida
+        sonidos.choque()
         self.reiniciarPosicion()
         if(self.perdio()){ //TEMP
-            "true" 
+            "true"
         }else{
             "false"
         }
@@ -63,7 +66,7 @@ object jugador {
 
     method sumarVida(){
         vidas += 1
-        //sonido de vida nueva
+        sonidos.ganarVida()
     }
 
 }
