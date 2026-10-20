@@ -61,3 +61,12 @@ class NivelCartel inherits BloquesFondo{
     method image() = "nivel" + nivel.toString() + ".png"
 
 }
+
+object cartelPerdiste {
+    var property position = game.at(7, 7)
+
+    method text() = "PERDISTE"
+    method textColor() = "FF0000"
+
+    method afectarJugador(unJugador) {}
+}

@@ -1,6 +1,8 @@
 import niveles.*
 import fondos.*
 import visuales.*
+import sonidos.*
+
 
 object juego {
 
@@ -54,6 +56,11 @@ object juego {
         niveles.empezar()
     }
 
+    method perder() {
+        game.clear()
+        game.addVisual(cartelPerdiste)
+        sonidos.gameOver()
+    }
     
 }
 

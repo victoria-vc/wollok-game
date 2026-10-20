@@ -1,6 +1,6 @@
 import niveles.*
 import sonidos.*
-
+import juego.*
 
 object jugador {
     var property position = game.at(10, 0)
@@ -53,10 +53,8 @@ object jugador {
         vidas = vidas - 1
         sonidos.choque()
         self.reiniciarPosicion()
-        if(self.perdio()){ //TEMP
-            "true"
-        }else{
-            "false"
+            if (self.perdio()) {
+            juego.perder()
         }
     }
 
