@@ -33,31 +33,31 @@ object flechaMenu {
     }
 }
 
-   object marcadorVidas {
+object marcadorVidas {
        var property position = game.at(1, 13)
 
        method text() = "Vidas: " + jugador.vidas()
        method textColor() = "FFFFFF"
    }
 
-class BloqueCalle {
+class BloquesFondo{
+    method afectarJugador(unJugador) = null
+}
+class BloqueCalle inherits BloquesFondo{
     var property position
     method image() = "calle.png"
-    method esEnemigo() = false
-    method esPowerUp() = false
+
 }
 
-class BloquePasto {
+class BloquePasto inherits BloquesFondo{
     var property position
     method image() = "pasto.png"
-    method esEnemigo() = false
-    method esPowerUp() = false
+
 }
 
-class NivelCartel {
+class NivelCartel inherits BloquesFondo{
     var property position
     var property nivel
     method image() = "nivel" + nivel.toString() + ".png"
-    method esEnemigo() = false
-    method esPowerUp() = false
+
 }

@@ -88,3 +88,15 @@ object barrera {
         abierta = !abierta
     }
 }
+
+object generadorEnemigos{
+
+    method generarAuto(posicion, direccion){
+        const color = ["rojo", "azul", "gris"].anyOne()
+        return new Auto(position = posicion, velocidad = 0.1.randomUpTo(1), direccion = direccion, color=color)
+    }
+
+    method generarColectivo(posicion, direccion){
+        return new Colectivo(position = posicion, velocidad = 0.2.randomUpTo(1.5), direccion = direccion)
+    }
+}

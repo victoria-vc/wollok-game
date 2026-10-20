@@ -47,13 +47,13 @@ class Nivel {
 	const filasCalle = []
 	const enemigos = []
 
+	const generadorEnemigos
 	const property ticksGeneracion
 	const property probabilidadEnemigos
 /* 
 	method Visuales() {
 	} */
-	
-	method generarEnemigo(lado, calle, direccion)
+
 
 	method empezar() {
 
@@ -86,7 +86,7 @@ class Nivel {
 						lado = game.width()
 						direccion = -1
 					}
-					const nuevoEnemigo = self.generarEnemigo(lado, calle, direccion)
+					const nuevoEnemigo = generadorEnemigos.apply(game.at(lado, calle), direccion) //segun la funcion que se pasa, genera autos, colectivos, etc
 					enemigos.add(nuevoEnemigo)
 					//callesConAutos.put(calle, 1)
 					nuevoEnemigo.agregarAlJuego()
@@ -112,12 +112,12 @@ class Nivel {
 
 		
 
-		const mate1 = new Mate(position = game.at(0, 3))
+		/*const mate1 = new Mate(position = game.at(0, 3))
 		const mate2 = new Mate(position = game.at(12, 7))
 
 		game.addVisual(mate1)
 		game.addVisual(mate2)
-
+		*/
 		game.onCollideDo(jugador, { elemento => 
     		elemento.afectarJugador(jugador)
 		})	
@@ -146,7 +146,7 @@ class Nivel {
 
 }
 
-class Nivel1 inherits Nivel{
+/*class Nivel1 inherits Nivel{
 
 	override method generarEnemigo(lado, calle, direccion){
 		return new Auto(position = game.at(lado, calle), velocidad = 0.1.randomUpTo(1), direccion = direccion, color=["rojo", "azul", "gris"].anyOne())
@@ -158,13 +158,14 @@ class Nivel2 inherits Nivel{
 			return new Colectivo(position = game.at(lado, calle), velocidad = 0.2.randomUpTo(1.5), direccion = direccion)
 		}
 }
-
+*/
 object niveles{
 
 	var property nivelActual = 0
 
-	const nivel1 = new Nivel1(ticksGeneracion = 1000, probabilidadEnemigos = 0.2)
-	const nivel2 = new Nivel2(ticksGeneracion = 800, probabilidadEnemigos = 0.4)
+	const nivel1 = new Nivel(ticksGeneracion = 1000, probabilidadEnemigos = 0.4, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) })
+
+	const nivel2 = new Nivel(ticksGeneracion = 800, probabilidadEnemigos = 0.7, generadorEnemigos = { pos, dir => generadorEnemigos.generarColectivo(pos, dir) })
 
 	var property nivelesCreados = [nivel1, nivel2]
 
