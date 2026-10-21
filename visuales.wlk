@@ -40,6 +40,11 @@ object marcadorVidas {
        method textColor() = "FFFFFF"
    }
 
+object flechaIndicadora {
+    var property position = game.at(19, 13)
+    method image() = "flechaRoja.png"
+}
+
 class BloquesFondo{
     method afectarJugador(unJugador) = null
 }
@@ -55,12 +60,18 @@ class BloquePasto inherits BloquesFondo{
 
 }
 
+class BloqueVia inherits BloquesFondo{
+    var property position
+    method image() = "via.png"
+}
+
 class NivelCartel inherits BloquesFondo{
     var property position
     var property nivel
     method image() = "nivel" + nivel.toString() + ".png"
 
 }
+
 
 object cartelPerdiste {
     var property position = game.at(7, 7)

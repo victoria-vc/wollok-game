@@ -50,10 +50,8 @@ class Nivel {
 	const generadorEnemigos
 	const property ticksGeneracion
 	const property probabilidadEnemigos
-/* 
-	method Visuales() {
-	} */
 
+	const creadorBloque = { pos => new BloqueCalle(position = pos) }
 
 	method empezar() {
 
@@ -64,7 +62,7 @@ class Nivel {
 			if (esCalle) { filasCalle.add(y) } else { filasPasto.add(y) }
             (0 .. game.width() - 1).forEach({ x =>
                 if (esCalle) {
-                    game.addVisual(new BloqueCalle(position = game.at(x, y)))
+                    game.addVisual(creadorBloque.apply(game.at(x, y)))
                 } else {
                     game.addVisual(new BloquePasto(position = game.at(x, y)))
                 }
@@ -100,10 +98,6 @@ class Nivel {
 			self.pasarDeNivel()
 		})
 
-
-		
-
-
 		game.onCollideDo(jugador, { elemento => 
     		elemento.afectarJugador(jugador)
 		})	
@@ -119,7 +113,6 @@ class Nivel {
 	
 	}
 	
-	
 	method pasarDeNivel() {
 		//jugador.puedePasarDeNivel()
 		if(jugador.estaEnFacultad()){
@@ -130,7 +123,6 @@ class Nivel {
 
 }
 
-
 object niveles{
 
 	var property nivelActual = 0
@@ -138,14 +130,17 @@ object niveles{
 	const nivel1 = new Nivel(ticksGeneracion = 1500, probabilidadEnemigos = 0.3, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) })
 
 	const nivel2 = new Nivel(ticksGeneracion = 1200, probabilidadEnemigos = 0.4, generadorEnemigos = { pos, dir => generadorEnemigos.generarColectivo(pos, dir) })
+																																														// acá va generarTren()
+	const nivel3 = new Nivel(ticksGeneracion = 2000, probabilidadEnemigos = 0.3, creadorBloque = { pos => new BloqueVia(position = pos) }, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) })
 
-	var property nivelesCreados = [nivel1, nivel2]
+	var property nivelesCreados = [nivel1, nivel2, nivel3]
 
 	method cargarVisuales(){
 		game.addVisual(jugador)
         movimientos.configControles(jugador)
 		game.addVisual(marcadorVidas)
 		game.addVisual(new NivelCartel(position = game.at(0, 0), nivel = nivelActual + 1))
+		game.addVisual(flechaIndicadora)
 	}
 
 	method empezar(){

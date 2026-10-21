@@ -106,3 +106,7 @@ object generadorEnemigos {
         )
     }
 }
+
+/* method generarTren(posicion, direccion) {
+        return new Tren(position = posicion, velocidad = 0.5, direccion = direccion)
+    } */
