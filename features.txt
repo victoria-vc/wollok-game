@@ -9,7 +9,7 @@
  - Powerups
     - Mate [ok] - Vic
     - Monster
-    - Escudo
+    - Escudo [ok] 
  - Facultad
  - Calle [ok]
  - Pasto [ok]

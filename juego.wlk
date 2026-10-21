@@ -13,9 +13,8 @@ object juego {
     }
 
     method mostrarMenu() {
-        game.addVisual(fondoMenu)
 
-  
+        game.addVisual(fondoMenu)
         game.addVisual(botonEmpezar)
         game.addVisual(botonSalir)
         game.addVisual(flechaMenu)

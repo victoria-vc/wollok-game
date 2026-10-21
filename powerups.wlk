@@ -11,4 +11,10 @@ class PowerUp {
 
 class Mate inherits PowerUp {
     override method image() = "mate.png"
+
+    override method afectarJugador(unJugador) // ?
+}
+
+class Escudo inherits PowerUp {
+    override method image() = "escudo.png"
 }

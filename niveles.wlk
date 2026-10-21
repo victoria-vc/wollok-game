@@ -194,8 +194,3 @@ object niveles{
 
 }
 
-/*
-object nivel2 Nivel(){}
-object nivel3 Nivel(){}
-object nivel4 Nivel(){}
-object nivel5 Nivel(){} */
