@@ -72,27 +72,18 @@ class Nivel {
 		})
 
 		game.onTick(ticksGeneracion, "generar_enemigos", {
-			
-			filasCalle.forEach({calle => 
-				//console.println("calle " + calle.toString() + " autos" + cantidadAutos.toString())
-				if (0.randomUpTo(1) < probabilidadEnemigos) {
-					const ladoRandom = 0.randomUpTo(1)
-					var lado
-					var direccion
-					if (ladoRandom > 0.5 ){
-						lado = 0
-						direccion = 1
-					}else{
-						lado = game.width()
-						direccion = -1
-					}
-					const nuevoEnemigo = generadorEnemigos.apply(game.at(lado, calle), direccion) //segun la funcion que se pasa, genera autos, colectivos, etc
-					enemigos.add(nuevoEnemigo)
-					//callesConAutos.put(calle, 1)
-					nuevoEnemigo.agregarAlJuego()
-				}
-			})
 
+			if (!filasCalle.isEmpty() and 0.randomUpTo(1) < probabilidadEnemigos) {
+				const calle = filasCalle.anyOne()
+				
+				const ladoRandom = 0.randomUpTo(1)
+				const lado = if (ladoRandom > 0.5) 0 else game.width()
+				const direccion = if (ladoRandom > 0.5) 1 else -1
+
+				const nuevoEnemigo = generadorEnemigos.apply(game.at(lado, calle), direccion)
+				enemigos.add(nuevoEnemigo)
+				nuevoEnemigo.agregarAlJuego()
+			}
 		})
 
 		game.onTick(100, "sacar_enemigos", { //saco de la visual y la lista los enemigos que estan fuera de la grilla
@@ -112,30 +103,23 @@ class Nivel {
 
 		
 
-		/*const mate1 = new Mate(position = game.at(0, 3))
-		const mate2 = new Mate(position = game.at(12, 7))
 
-		game.addVisual(mate1)
-		game.addVisual(mate2)
-		*/
 		game.onCollideDo(jugador, { elemento => 
     		elemento.afectarJugador(jugador)
 		})	
-	
-	}
-	
-	/*
-	method jugarNivel() {
-		game.clear() // con esto se borra TODO del tablero
-	}
 
-	method perderNivel() {
-	}
+		// Filas de pasto donde pueden aparecer Powerups
+		const filasPastoValidasPU = filasPasto.filter({ y => y > 0 and y < game.height() - 1 })
 
-	method reiniciarJuego() {   
+		// MATE y ESCUDO al azar
+		if (!filasPastoValidasPU.isEmpty()) {
+			game.addVisual(new Mate(position = game.at((1 .. game.width() - 2).anyOne(), filasPastoValidasPU.anyOne())))
+			game.addVisual(new Escudo(position = game.at((1 .. game.width() - 2).anyOne(), filasPastoValidasPU.anyOne())))
+		}
+	
 	}
 	
- */
+	
 	method pasarDeNivel() {
 		//jugador.puedePasarDeNivel()
 		if(jugador.estaEnFacultad()){
@@ -146,26 +130,14 @@ class Nivel {
 
 }
 
-/*class Nivel1 inherits Nivel{
 
-	override method generarEnemigo(lado, calle, direccion){
-		return new Auto(position = game.at(lado, calle), velocidad = 0.1.randomUpTo(1), direccion = direccion, color=["rojo", "azul", "gris"].anyOne())
-	}
-}
-
-class Nivel2 inherits Nivel{
-		override method generarEnemigo(lado, calle, direccion){
-			return new Colectivo(position = game.at(lado, calle), velocidad = 0.2.randomUpTo(1.5), direccion = direccion)
-		}
-}
-*/
 object niveles{
 
 	var property nivelActual = 0
 
-	const nivel1 = new Nivel(ticksGeneracion = 1000, probabilidadEnemigos = 0.4, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) })
+	const nivel1 = new Nivel(ticksGeneracion = 1500, probabilidadEnemigos = 0.3, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) })
 
-	const nivel2 = new Nivel(ticksGeneracion = 800, probabilidadEnemigos = 0.7, generadorEnemigos = { pos, dir => generadorEnemigos.generarColectivo(pos, dir) })
+	const nivel2 = new Nivel(ticksGeneracion = 1200, probabilidadEnemigos = 0.4, generadorEnemigos = { pos, dir => generadorEnemigos.generarColectivo(pos, dir) })
 
 	var property nivelesCreados = [nivel1, nivel2]
 

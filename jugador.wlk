@@ -6,6 +6,7 @@ object jugador {
     var property position = game.at(10, 0)
     var direccion = "derecha"
     var property vidas = 3 
+    var property tieneEscudo = false
 
     method image() {
         var asset
@@ -49,18 +50,26 @@ object jugador {
 
     method estaEnFacultad() = self.position().y() == game.height() - 1
 
-    method perderVida() {
-        vidas = vidas - 1
-        sonidos.choque()
-        self.reiniciarPosicion()
-            if (self.perdio()) {
-            juego.perder()
-        }
-    }
 
     method estaEnGrilla(pos) = pos.x() >= 0 and pos.x() <= game.width() - 1 and pos.y() >= 0 and pos.y() <= game.height() - 1
 
-    method perdio() = vidas < 1 //sonido de game over
+    method activarEscudo(tiempo){
+        tieneEscudo = true
+        game.schedule(tiempo, { tieneEscudo = false })
+    }
+
+    method perdio() = vidas < 1 // sonido de game over
+
+    method perderVida() {
+        if (!tieneEscudo) {
+            vidas -= 1
+            sonidos.choque()
+            self.reiniciarPosicion()
+            if (self.perdio()) {
+                juego.perder()
+            }
+        }
+    }
 
     method sumarVida(){
         vidas += 1

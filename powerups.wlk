@@ -1,4 +1,5 @@
 import niveles.*
+import sonidos.*
 
 
 class PowerUp {
@@ -6,15 +7,23 @@ class PowerUp {
 
     method image()
     
-    method afectarJugador(unJugador) //falta implementar
+    method afectarJugador(unJugador) 
 }
 
 class Mate inherits PowerUp {
     override method image() = "mate.png"
 
-    override method afectarJugador(unJugador) // ?
+    override method afectarJugador(unJugador) {
+        unJugador.sumarVida()
+
+    }
 }
 
 class Escudo inherits PowerUp {
     override method image() = "escudo.png"
+
+    override method afectarJugador(unJugador) {
+        unJugador.activarEscudo(8000)
+        sonidos.agarrarItem()
+    }
 }

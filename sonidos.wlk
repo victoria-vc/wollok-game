@@ -2,7 +2,7 @@
 import wollok.game.*
 
 object sonidos {
-  method sonidoAgarrarItem() {
+  method agarrarItem() {
     const audio = game.sound("agarrarItem.mp3")
     audio.volume(0.5)
     audio.play()
