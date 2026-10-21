@@ -20,7 +20,7 @@
  - Número de nivel (nivel 1, nivel 2, etc.) [ok]
   
 ## Enemigos 
- - Autos [falta comportamiento] - Vic
+ - Autos [ok] 
  - Colectivos (DONE)
  - Tren
  - Piqueteros
