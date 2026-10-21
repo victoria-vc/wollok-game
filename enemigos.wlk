@@ -39,10 +39,10 @@ class ColaColectivo inherits Enemigo {
 }
 
 class Colectivo inherits Enemigo {
+    var property linea = "114" // linea base
     const cola = new ColaColectivo(colectivo = self, position = self.posicionCola(), direccion = direccion, velocidad = velocidad)
 
-    override method image() = "colectivo_" + (if (direccion == 1) "derecha" else "izquierda") + ".png"
-
+    override method image() = "colectivo_" + linea.toString() + "_" + (if (direccion == 1) "derecha" else "izquierda") + ".png"
     method posicionCola() = if (direccion == 1) position.right(1) else position.left(1)
 
     override method mover() {
@@ -89,14 +89,20 @@ object barrera {
     }
 }
 
-object generadorEnemigos{
+object generadorEnemigos {
 
-    method generarAuto(posicion, direccion){
+    method generarAuto(posicion, direccion) {
         const color = ["rojo", "azul", "gris"].anyOne()
-        return new Auto(position = posicion, velocidad = 0.1.randomUpTo(1), direccion = direccion, color=color)
+        return new Auto(position = posicion, velocidad = 0.1.randomUpTo(1), direccion = direccion, color = color)
     }
 
-    method generarColectivo(posicion, direccion){
-        return new Colectivo(position = posicion, velocidad = 0.2.randomUpTo(1.5), direccion = direccion)
+    method generarColectivo(posicion, direccion) {
+        const lineaRandom = ["7", "114", "145"].anyOne() 
+        return new Colectivo(
+            position = posicion, 
+            velocidad = 0.2.randomUpTo(1.5), 
+            direccion = direccion, 
+            linea = lineaRandom
+        )
     }
 }
