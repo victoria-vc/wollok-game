@@ -81,3 +81,10 @@ object cartelPerdiste {
 
     method afectarJugador(unJugador) {}
 }
+
+class Corazon inherits BloquesFondo {
+    var property position
+    const indice
+
+    method image() = if (jugador.vidas() > indice) "corazon.png" else "transparente.png"
+}

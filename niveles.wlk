@@ -138,7 +138,7 @@ object niveles{
 	method cargarVisuales(){
 		game.addVisual(jugador)
         movimientos.configControles(jugador)
-		game.addVisual(marcadorVidas)
+		(0 .. 4).forEach({ i => game.addVisual(new Corazon(indice = i, position = game.at(i, 13))) })
 		game.addVisual(new NivelCartel(position = game.at(0, 0), nivel = nivelActual + 1))
 		game.addVisual(flechaIndicadora)
 	}
