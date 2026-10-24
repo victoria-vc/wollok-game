@@ -6,7 +6,7 @@ object botonEmpezar {
 
     var property position = game.at(4, 5)
 
-    method image() = "empezar.png"
+    method image() = "menu/empezar.png"
 }
 
 
@@ -14,7 +14,7 @@ object botonSalir {
 
     var property position = game.at(4, 3)
 
-    method image() = "salir.png"
+    method image() = "menu/salir.png"
 }
 
 
@@ -22,7 +22,7 @@ object flechaMenu {
 
     var property position = game.at(2, 5)
 
-    method image() = "flecha.png"
+    method image() = "menu/flecha.png"
 
     method moverArriba(){
         position = game.at(2, 5)

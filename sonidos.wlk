@@ -3,32 +3,32 @@ import wollok.game.*
 
 object sonidos {
   method agarrarItem() {
-    const audio = game.sound("agarrarItem.mp3")
+    const audio = game.sound("sonidos/agarrarItem.mp3")
     audio.volume(0.5)
     audio.play()
   }
 
   method choque() {
-    const audio = game.sound("choque.mp3")
+    const audio = game.sound("sonidos/choque.mp3")
     audio.volume(0.1)
     audio.play()
   }
 
   method moverPersonaje() {
-    const audio = game.sound("movimiento.mp3")
+    const audio = game.sound("sonidos/movimiento.mp3")
     audio.volume(0.1)
     audio.play()
   }
 
   method pasarNivel() {
-    game.sound("pasarNivel.mp3").play()
+    game.sound("sonidos/pasarNivel.mp3").play()
   }
 
   method ganarVida() {
-    game.sound("salud.mp3").play()
+    game.sound("sonidos/salud.mp3").play()
   }
 
   method gameOver() {
-    game.sound("gameOver.mp3").play()
+    game.sound("sonidos/gameOver.mp3").play()
   }
 }

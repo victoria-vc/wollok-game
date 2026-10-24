@@ -5,6 +5,7 @@ import movimientos.*
 import fondos.*
 import visuales.*
 import powerups.*
+import cinematicas.*
 
 object generadorDeNivel {
 
@@ -46,6 +47,7 @@ class Nivel {
 	const filasPasto = []
 	const filasCalle = []
 	const enemigos = []
+	const nivelActual
 
 	const generadorEnemigos
 	const property ticksGeneracion
@@ -53,7 +55,17 @@ class Nivel {
 
 	const creadorBloque = { pos => new BloqueCalle(position = pos) }
 
+	method cargarVisuales(){
+		game.addVisual(jugador)
+        movimientos.configControles(jugador)
+		(0 .. jugador.vidas()).forEach({ i => game.addVisual(new Corazon(indice = i, position = game.at(i, 13))) })
+		game.addVisual(new NivelCartel(position = game.at(0, 0), nivel = nivelActual))
+		game.addVisual(flechaIndicadora)
+	}
+
 	method empezar() {
+
+		self.cargarVisuales()
 
 		const filas = generadorDeNivel.generarFilas();
 
@@ -127,25 +139,18 @@ object niveles{
 
 	var property nivelActual = 0
 
-	const nivel1 = new Nivel(ticksGeneracion = 1500, probabilidadEnemigos = 0.3, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) })
+	const nivel1 = new Nivel(ticksGeneracion = 1500, probabilidadEnemigos = 0.3, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) }, nivelActual = 1)
 
-	const nivel2 = new Nivel(ticksGeneracion = 1200, probabilidadEnemigos = 0.4, generadorEnemigos = { pos, dir => generadorEnemigos.generarColectivo(pos, dir) })
+	const nivel2 = new Nivel(ticksGeneracion = 1200, probabilidadEnemigos = 0.4, generadorEnemigos = { pos, dir => generadorEnemigos.generarColectivo(pos, dir) }, nivelActual = 2)
 																																														// acá va generarTren()
-	const nivel3 = new Nivel(ticksGeneracion = 2000, probabilidadEnemigos = 0.3, creadorBloque = { pos => new BloqueVia(position = pos) }, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) })
+	const nivel3 = new Nivel(ticksGeneracion = 2000, probabilidadEnemigos = 0.3, creadorBloque = { pos => new BloqueVia(position = pos) }, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) }, nivelActual = 3)
 
-	var property nivelesCreados = [nivel1, nivel2, nivel3]
+	var property nivelesCreados = [cinematicaInicio, nivel1, nivel2, nivel3]
 
-	method cargarVisuales(){
-		game.addVisual(jugador)
-        movimientos.configControles(jugador)
-		(0 .. 4).forEach({ i => game.addVisual(new Corazon(indice = i, position = game.at(i, 13))) })
-		game.addVisual(new NivelCartel(position = game.at(0, 0), nivel = nivelActual + 1))
-		game.addVisual(flechaIndicadora)
-	}
+	
 
 	method empezar(){
 		nivelesCreados.get(0).empezar()
-		self.cargarVisuales()
 	}
 
 	method pasarNivel(){
@@ -156,7 +161,6 @@ object niveles{
 		}else{
 			console.println("Ganaste")
 		}
-		self.cargarVisuales()
 	}
 
 }

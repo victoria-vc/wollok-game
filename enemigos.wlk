@@ -27,22 +27,22 @@ class Enemigo {
 
 class Auto inherits Enemigo{
     var property color
-    override method image() = "auto_" + color.toString() + ".png" 
+    override method image() = "enemigos/auto_" + color.toString() + ".png" 
     
 }
 
 class ColaColectivo inherits Enemigo {
     const property colectivo
 
-    override method image() = "transparente.png"
+    override method image() = "enemigos/transparente.png"
     override method mover() {}   // la mueve el colectivo, no se mueve sola
 }
 
 class Colectivo inherits Enemigo {
-    var property linea = "114" // linea base
+    const property linea // linea base
     const cola = new ColaColectivo(colectivo = self, position = self.posicionCola(), direccion = direccion, velocidad = velocidad)
 
-    override method image() = "colectivo_" + linea.toString() + "_" + (if (direccion == 1) "derecha" else "izquierda") + ".png"
+    override method image() = "enemigos/colectivo_" + linea.toString() + "_" + (if (direccion == 1) "derecha" else "izquierda") + ".png"
     method posicionCola() = if (direccion == 1) position.right(1) else position.left(1)
 
     override method mover() {
@@ -62,11 +62,11 @@ class Colectivo inherits Enemigo {
 }
 
 class Tren inherits Enemigo {
-    override method image() = "tren.png"
+    override method image() = "enemigos/tren.png"
 }
 
 class Piquete inherits Enemigo {
-    override method image() = "piquete.png"
+    override method image() = "enemigos/piquete.png"
 }
 
 object barrera {

@@ -7,7 +7,7 @@ class Fondo {
 }
 
 object fondoMenu inherits Fondo {
-    override method image() = "menu.png"
+    override method image() = "menu/fondoMenu.png"
 }
 
 object fondoPasto inherits Fondo {
