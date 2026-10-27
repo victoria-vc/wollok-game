@@ -31,3 +31,12 @@ class Escudo inherits PowerUp {
         sonidos.agarrarItem()
     }
 }
+
+class Monster inherits PowerUp {
+    override method image() = "powerups/Monster.png"
+
+    override method afectarJugador(unJugador) {
+        super(unJugador)
+         unJugador.activarVelocidad()
+    }
+}

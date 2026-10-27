@@ -7,6 +7,7 @@ object jugador {
     var direccion = "derecha"
     var property vidas = 3 
     var property tieneEscudo = false
+    var property velocidad = 1
 
     method image() {
         var asset
@@ -74,6 +75,13 @@ object jugador {
     method sumarVida(){
         vidas += 1
         sonidos.ganarVida()
+    }
+
+    method activarVelocidad() {
+    velocidad = 2
+    game.schedule(5000, {
+        velocidad = 1
+    })
     }
 
 }

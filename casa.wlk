@@ -1,5 +1,5 @@
 import visuales.*
-import casa.*
+
 class NivelCasa {
 
     method empezar() {
