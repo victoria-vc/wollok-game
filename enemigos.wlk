@@ -1,3 +1,4 @@
+import jugador.*
 import niveles.*
 
 
@@ -6,9 +7,18 @@ class Enemigo {
     var property direccion
     var property velocidad
 
+    method initialize() {
+        game.onCollideDo(self, { personaje => 
+            if(personaje.esJugador()) {
+                self.afectarJugador(personaje)
+            }
+        })
+    }
+
     method image()
 
     method afectarJugador(unJugador) = unJugador.perderVida()
+
 
     method mover(){
         position = position.right(direccion * velocidad)
@@ -23,7 +33,10 @@ class Enemigo {
     }
 
     method estaAfuera() = self.position().x() < -5 or self.position().x() > game.width() + 5 //agrego 5 a los dos lados para que no se borren antes de aparecer
+
+    method esJugador() = false
 }
+
 
 class Auto inherits Enemigo{
     var property color

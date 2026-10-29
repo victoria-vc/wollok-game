@@ -53,14 +53,14 @@ class Nivel {
 	const property ticksGeneracion
 	const property probabilidadEnemigos
 
-	const creadorBloque = { pos => new BloqueCalle(position = pos) }
+	const creadorBloque = { pos => new Visual(position = pos, image = "calle.png") }
 
 	method cargarVisuales(){
 		game.addVisual(jugador)
         movimientos.configControles(jugador)
 		(0 .. jugador.vidas()).forEach({ i => game.addVisual(new Corazon(indice = i, position = game.at(i, 13))) })
 		game.addVisual(new NivelCartel(position = game.at(0, 0), nivel = nivelActual))
-		game.addVisual(flechaIndicadora)
+		game.addVisual(new Visual(position = game.at(19, 13), image = "flechaRoja.png"))
 	}
 
 	method empezar() {
@@ -76,7 +76,7 @@ class Nivel {
                 if (esCalle) {
                     game.addVisual(creadorBloque.apply(game.at(x, y)))
                 } else {
-                    game.addVisual(new BloquePasto(position = game.at(x, y)))
+                    game.addVisual(new Visual(position = game.at(x, y), image = "pasto.png"))
                 }
             })
 		})
@@ -110,14 +110,10 @@ class Nivel {
 			self.pasarDeNivel()
 		})
 
-		game.onCollideDo(jugador, { elemento => 
-    		elemento.afectarJugador(jugador)
-		})	
-
 		// Filas de pasto donde pueden aparecer Powerups
 		const filasPastoValidasPU = filasPasto.filter({ y => y > 0 and y < game.height() - 1 })
 
-		// MATE y ESCUDO al azar
+		// MATE, ESCUDO y MONSTER al azar
 		if (!filasPastoValidasPU.isEmpty()) {
 			game.addVisual(new Mate(position = game.at((1 .. game.width() - 2).anyOne(), filasPastoValidasPU.anyOne())))
 			game.addVisual(new Escudo(position = game.at((1 .. game.width() - 2).anyOne(), filasPastoValidasPU.anyOne())))
@@ -140,11 +136,11 @@ object niveles{
 
 	var property nivelActual = 0
 
-	const nivel1 = new Nivel(ticksGeneracion = 1500, probabilidadEnemigos = 0.3, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) }, nivelActual = 1)
+	const nivel1 = new Nivel(ticksGeneracion = 1500, probabilidadEnemigos = 0.3, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) }, nivelActual = 1, creadorBloque = { pos => new Visual(position = pos, image = "calle.png") })
 
-	const nivel2 = new Nivel(ticksGeneracion = 1200, probabilidadEnemigos = 0.4, generadorEnemigos = { pos, dir => generadorEnemigos.generarColectivo(pos, dir) }, nivelActual = 2)
-																																														// acá va generarTren()
-	const nivel3 = new Nivel(ticksGeneracion = 2000, probabilidadEnemigos = 0.3, creadorBloque = { pos => new BloqueVia(position = pos) }, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) }, nivelActual = 3)
+    const nivel2 = new Nivel(ticksGeneracion = 1200, probabilidadEnemigos = 0.4, generadorEnemigos = { pos, dir => generadorEnemigos.generarColectivo(pos, dir) }, nivelActual = 2, creadorBloque = { pos => new Visual(position = pos, image = "calle.png") })
+
+    const nivel3 = new Nivel(ticksGeneracion = 2000, probabilidadEnemigos = 0.3, creadorBloque = { pos => new Visual(position = pos, image = "via.png") }, generadorEnemigos = { pos, dir => generadorEnemigos.generarAuto(pos, dir) }, nivelActual = 3)
 
 	var property nivelesCreados = [cinematicaInicio, nivel1, nivel2, nivel3]
 

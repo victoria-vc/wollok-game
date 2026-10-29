@@ -1,3 +1,4 @@
+import jugador.*
 import niveles.*
 import sonidos.*
 
@@ -10,6 +11,16 @@ class PowerUp {
     method afectarJugador(unJugador)  {
         game.removeVisual(self)
     }
+
+    method initialize() {
+        game.onCollideDo(self, { personaje => 
+            if(personaje.esJugador()) {
+                self.afectarJugador(personaje)
+            }
+        })
+    }
+
+    method esJugador() = false
 }
 
 class Mate inherits PowerUp {

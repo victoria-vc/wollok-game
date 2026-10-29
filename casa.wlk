@@ -12,8 +12,8 @@ class NivelCasa {
 
     method bloqueEn(pos) {
         if (pos.y() == game.height() - 1) {
-            return new BloqueCalle(position = pos)   // provisorio: pared de arriba
+            return new Visual(position = pos, image = "pared_arriba.png")   // provisorio: pared de arriba
         }
-        return new BloquePasto(position = pos)       // provisorio: piso
+        return new Visual(position = pos, image = "piso.png")       // provisorio: piso
     }
 }

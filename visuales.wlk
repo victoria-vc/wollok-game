@@ -1,90 +1,37 @@
 import jugador.*
 import niveles.*
 
-
-object botonEmpezar {
-
-    var property position = game.at(4, 5)
-
-    method image() = "menu/empezar.png"
+class Visual {
+    var property position
+    var property image
 }
 
-
-object botonSalir {
-
-    var property position = game.at(4, 3)
-
-    method image() = "menu/salir.png"
-}
-
-
-object flechaMenu {
-
-    var property position = game.at(2, 5)
-
-    method image() = "menu/flecha.png"
-
-    method moverArriba(){
-        position = game.at(2, 5)
-    }
-
-    method moverAbajo(){
-        position = game.at(2, 3)
-    }
+object flechaMenu inherits Visual(position = game.at(2, 5), image = "menu/flecha.png") {
+    method moverArriba() { position = game.at(2, 5) }
+    method moverAbajo() { position = game.at(2, 3) }
 }
 
 object marcadorVidas {
-       var property position = game.at(1, 13)
-
-       method text() = "Vidas: " + jugador.vidas()
-       method textColor() = "FFFFFF"
-   }
-
-object flechaIndicadora {
-    var property position = game.at(19, 13)
-    method image() = "flechaRoja.png"
+    var property position = game.at(1, 13)
+    method text() = "Vidas: " + jugador.vidas()
+    method textColor() = "FFFFFF"
 }
 
-class BloquesFondo{
-    method afectarJugador(unJugador) = null
-}
-class BloqueCalle inherits BloquesFondo{
-    var property position
-    method image() = "calle.png"
-
-}
-
-class BloquePasto inherits BloquesFondo{
-    var property position
-    method image() = "pasto.png"
-
-}
-
-class BloqueVia inherits BloquesFondo{
-    var property position
-    method image() = "via.png"
-}
-
-class NivelCartel inherits BloquesFondo{
-    var property position
+class NivelCartel{
     var property nivel
+    var property position
     method image() = "nivel" + nivel.toString() + ".png"
-
 }
 
-
-object cartelPerdiste {
-    var property position = game.at(7, 7)
-
+object cartelPerdiste inherits Visual(position = game.at(7, 7), image = "transparente.png") {
+    // Falta imagen para el cartel
     method text() = "PERDISTE"
     method textColor() = "FF0000"
-
-    method afectarJugador(unJugador) {}
 }
 
-class Corazon inherits BloquesFondo {
-    var property position
+class Corazon {
     const indice
-
+    var property position
     method image() = if (jugador.vidas() > indice) "corazon.png" else "transparente.png"
 }
+

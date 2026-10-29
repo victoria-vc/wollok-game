@@ -3,7 +3,7 @@ import wollok.lib.*
 import juego.*
 
 
-program jueguito { // 
+program jueguito { 
    
     game.title("UTN Cross")
     

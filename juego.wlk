@@ -15,6 +15,10 @@ object juego {
     method mostrarMenu() {
 
         game.addVisual(fondoMenu)
+
+        const botonEmpezar = new Visual(position = game.at(4, 5), image = "menu/empezar.png")
+        const botonSalir = new Visual(position = game.at(4, 3), image = "menu/salir.png")
+        
         game.addVisual(botonEmpezar)
         game.addVisual(botonSalir)
         game.addVisual(flechaMenu)

@@ -84,4 +84,6 @@ object jugador {
     })
     }
 
+    method esJugador() = true
+
 }
