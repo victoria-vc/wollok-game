@@ -44,7 +44,7 @@ class Escudo inherits PowerUp {
 }
 
 class Monster inherits PowerUp {
-    override method image() = "powerups/Monster.png"
+    override method image() = "powerups/monster.png"
 
     override method afectarJugador(unJugador) {
         super(unJugador)

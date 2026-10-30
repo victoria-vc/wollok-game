@@ -65,8 +65,6 @@ class Nivel {
 
 	method empezar() {
 
-		self.cargarVisuales()
-
 		const filas = generadorDeNivel.generarFilas();
 
 		(0 .. filas.size() - 1).forEach({ y =>
@@ -80,6 +78,8 @@ class Nivel {
                 }
             })
 		})
+
+		self.cargarVisuales()
 
 		game.onTick(ticksGeneracion, "generar_enemigos", {
 
